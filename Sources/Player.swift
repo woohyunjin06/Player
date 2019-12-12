@@ -378,7 +378,7 @@ open class Player: UIViewController {
         self._playerView.frame = self.view.bounds
         self.view = self._playerView
     }
-
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -399,6 +399,17 @@ open class Player: UIViewController {
         super.viewDidDisappear(animated)
         if self.playbackState == .playing {
             self.pause()
+        }
+    }
+    
+    open override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if self.playbackState == .paused || self.playbackState == .stopped {
+            self.playFromCurrentTime()
         }
     }
 
